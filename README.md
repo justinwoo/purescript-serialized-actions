@@ -52,7 +52,18 @@ logActionJson "{ \"tag\": \"Invalid\"}"
 -- did not decode
 ```
 
-Of course, this is not really the most important usage for decoders. A more likely case is for foreign JSON returned from anything that may return incorrect/invalid JSON, such as JS libraries, remote endpoints, JSON files, etc. e.g. in [purescript-node-telegram-bot-api](https://github.com/justinwoo/purescript-node-telegram-bot-api/blob/master/src/TelegramBot.purs):
+Of course, this is not really the most important usage for decoders. A more likely case is for foreign JSON returned from anything that may return incorrect/invalid/overly polymorphic JSON, such as JS libraries, remote endpoints, JSON files, etc. e.g. in [purescript-node-telegram-bot-api](https://github.com/justinwoo/purescript-node-telegram-bot-api/blob/master/src/TelegramBot.purs):
+
+```js
+{ message_id: 1004,
+  from:
+   { ... },
+  chat:
+   { ... ,
+     type: 'private' },
+  date: 1485117065,
+  text: 'test' }
+```
 
 ```hs
 newtype Message = Message
